@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wa_mobile/secondPage.dart';
+import 'package:wa_mobile/MainPage/mainpagefirst.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const SecondPage()),
+        MaterialPageRoute(builder: (context) => const MainPageFirstWidget()),
       );
     });
   }
