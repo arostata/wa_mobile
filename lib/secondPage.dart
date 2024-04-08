@@ -14,14 +14,14 @@ class SecondPage extends StatelessWidget {
             Text(
               'Upcoming Exam',
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ), // Adjust font size as needed
             ),
             Text(
               'April 10, 2024 | 2:30 PM | PHST (UTC +8)',
               style: TextStyle(
-                fontSize: 10,
+                fontSize: 12,
                 color: Color(0xFF616161),
               ), // Adjust font size as needed
             ),
@@ -60,33 +60,42 @@ class SecondPage extends StatelessWidget {
                     margin: const EdgeInsets.all(8), // Add margin for spacing
                     color: const Color.fromRGBO(
                         103, 93, 194, 0.05), // Background color with 5% opacity
-                    child: ListTile(
-                      title: const Column(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('The title or label of exam'),
-                          SizedBox(height: 5), // Adjust spacing
-                          Text(
+                          const Text(
+                            'The title or label of exam',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          const Text(
                             'Online Proctor',
                             style: TextStyle(
                               fontSize: 12,
-                              color: Colors.grey,
+                              color: Color(0xFF616161), // Change text color
                             ),
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Handle button press
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(
+                                      0xFF675DC2), // Background color
+                                ),
+                                child: const Text(
+                                  'Review Now',
+                                  style: TextStyle(
+                                      color: Colors.white), // Text color
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
-                      ),
-                      trailing: ElevatedButton(
-                        onPressed: () {
-                          // Handle button press
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color(0xFF675DC2), // Background color
-                        ),
-                        child: const Text(
-                          'Review Now',
-                          style: TextStyle(color: Colors.white), // Text color
-                        ),
                       ),
                     ),
                   ),
@@ -111,9 +120,24 @@ class SecondPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('First Label'),
-                          const Text('Second Label'),
-                          const Text('Third Label'),
+                          const Text(
+                            'The title or label of exam',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          const Text(
+                            'May 5, 2024 | 4:00 PM | PHST (UTC +8)',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Color(0xFF616161), // Change text color
+                            ),
+                          ),
+                          const Text(
+                            'Online Proctor',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Color(0xFF616161), // Change text color
+                            ),
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -122,7 +146,7 @@ class SecondPage extends StatelessWidget {
                                   // Handle button press
                                 },
                                 child: const Text(
-                                  'Button Text',
+                                  'Review',
                                   style: TextStyle(
                                     color: Color(0xFF675DC2), // Text color
                                   ),
@@ -134,13 +158,52 @@ class SecondPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Card(
+                  Card(
                     elevation: 0, // Remove shadow
-                    margin: EdgeInsets.all(8), // Add margin for spacing
-                    color: Color.fromRGBO(
+                    margin: const EdgeInsets.all(8), // Add margin for spacing
+                    color: const Color.fromRGBO(
                         103, 93, 194, 0.05), // Background color with 5% opacity
-                    child: ListTile(
-                      title: Text('Third CardView'),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'The title or label of exam',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          const Text(
+                            'May 5, 2024 | 4:00 PM | PHST (UTC +8)',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Color(0xFF616161), // Change text color
+                            ),
+                          ),
+                          const Text(
+                            'Online Proctor',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Color(0xFF616161), // Change text color
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  // Handle button press
+                                },
+                                child: const Text(
+                                  'Review',
+                                  style: TextStyle(
+                                    color: Color(0xFF675DC2), // Text color
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   // Add more CardViews as needed
