@@ -30,7 +30,7 @@ class MainPageFirstWidget extends StatelessWidget {
             IconButton(
               onPressed: () {
                 // Navigate to profile page
-                Navigator.pushNamed(context, '/profile');
+                // Navigator.pushNamed(context, '/profile'); //this one will fail.
               },
               icon: Container(
                 padding: const EdgeInsets.all(2),
