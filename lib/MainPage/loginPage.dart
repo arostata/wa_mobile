@@ -184,7 +184,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                       unselectedLabelColor: Color(0xFF57636C),
                                       labelPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              32, 0, 32, 0),
+                                              0, 0, 56, 0),
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .titleMedium
                                           .override(
@@ -427,7 +427,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         autofillHints: [
                                                           AutofillHints.password
                                                         ],
-                                                        obscureText: _model
+                                                        obscureText: !_model
                                                             .passwordCreateVisibility,
                                                         decoration:
                                                             InputDecoration(
@@ -589,7 +589,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         options:
                                                             FFButtonOptions(
                                                           width: 230,
-                                                          height: 52,
+                                                          height: 50,
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(0,
