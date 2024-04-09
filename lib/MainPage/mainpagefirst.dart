@@ -48,7 +48,7 @@ class MainPageFirstWidget extends StatelessWidget {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16.0), // Set your desired padding here
+          padding: const EdgeInsets.all(18.0), // Set your desired padding here
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -7,7 +7,7 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Column(
+        title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -34,15 +34,15 @@ class SecondPage extends StatelessWidget {
               // Navigator.pushNamed(context, '/profile');
             },
             icon: Container(
-              padding: EdgeInsets.all(2),
+              padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: Color(0xFF675DC2),
+                  color: const Color(0xFF675DC2),
                   width: 2,
                 ),
               ),
-              child: CircleAvatar(
+              child: const CircleAvatar(
                 backgroundImage: AssetImage('lib/assets/avatar_person.png'),
               ),
             ),
@@ -66,11 +66,11 @@ class SecondPage extends StatelessWidget {
                     buttonText: 'Review Now',
                     isElevatedButton: true,
                   ),
-                  Divider(
+                  const Divider(
                     color: Color(0xFFD9D9D9),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
                       'Later',
                       style: TextStyle(
@@ -104,15 +104,19 @@ class SecondPage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
                   // Handle button press
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF675DC2),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(const Color(0xFF675DC2)),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  minimumSize: MaterialStateProperty.all<Size>(
+                      const Size(double.infinity, 50)),
                 ),
-                child: Text(
+                child: const Text(
                   'Register another exam',
                   style: TextStyle(color: Colors.white),
                 ),
@@ -134,8 +138,8 @@ class SecondPage extends StatelessWidget {
   }) {
     return Card(
       elevation: 0,
-      margin: EdgeInsets.all(8),
-      color: Color.fromRGBO(103, 93, 194, 0.05),
+      margin: const EdgeInsets.all(8),
+      color: const Color.fromRGBO(103, 93, 194, 0.05),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -143,18 +147,18 @@ class SecondPage extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             Text(
               dateTime,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12,
                 color: Color(0xFF616161),
               ),
             ),
             Text(
               subtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12,
                 color: Color(0xFF616161),
               ),
@@ -166,11 +170,11 @@ class SecondPage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: onPressed,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF675DC2),
+                      backgroundColor: const Color(0xFF675DC2),
                     ),
                     child: Text(
                       buttonText,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 if (!isElevatedButton)
@@ -178,7 +182,7 @@ class SecondPage extends StatelessWidget {
                     onPressed: onPressed,
                     child: Text(
                       buttonText,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFF675DC2),
                       ),
                     ),
