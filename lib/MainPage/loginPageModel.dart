@@ -39,8 +39,8 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   @override
   void initState(BuildContext context) {
-    passwordCreateVisibility = false;
-    passwordVisibility = false;
+    passwordCreateVisibility = true;
+    passwordVisibility = true;
   }
 
   @override
