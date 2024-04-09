@@ -65,6 +65,7 @@ dependencies:
   url_launcher_platform_interface: 2.3.2
   flutter_animate: ^4.1.1+1
   permission_handler: ^11.3.1
+  flutter_pdfview: ^1.2.7
 
 dev_dependencies:
   flutter_test:
