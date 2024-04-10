@@ -14,64 +14,35 @@ class _EditProfileState extends State<EditProfile> {
   bool address = false;
   bool contact = false;
 
-  // final userId = widget.user.userid;
-  // final username = widget.user.username;
-  // final password = widget.user.password;
-  // final firstName = widget.user.firstName;
-  // final lastName = widget.user.lastName;
-  // final email = widget.user.email;
-  // final phone = widget.user.phone;
-  // final fullAddress = widget.user.fullAddress;
-  // final city = widget.user.city;
-  // final province = widget.user.province;
-  // final postalCode = widget.user.postalCode;
-  // final usercountryId = widget.user.country;
-
   @override
   void initState() {
     List<UserModel> user = [
-      UserModel(userid: widget.user.userid, username: widget.user.username, password: widget.user.password, firstName: widget.user.firstName, lastName: widget.user.lastName, email: widget.user.email, phone: widget.user.phone, fullAddress: widget.user.fullAddress, city: widget.user.city, province: widget.user.province, postalCode: widget.user.postalCode, country: widget.user.country)
-  ];
-
-  
-
-}
-
-  // TextEditingController fname = TextEditingController();
-  // TextEditingController lname = TextEditingController();
-  // TextEditingController login = TextEditingController();
-  // TextEditingController email = TextEditingController();
-  // TextEditingController phone = TextEditingController();
-  // TextEditingController province = TextEditingController();
-  // TextEditingController city = TextEditingController();
-  // TextEditingController postal = TextEditingController();
-  // TextEditingController country = TextEditingController();
-  // TextEditingController faddress = TextEditingController();
-
-  // @override
-  // void dispose() {
-  //   // Clean up the controller when the widget is removed from the
-  //   // widget tree.
-  //   fname.dispose();
-  //   lname.dispose();
-  //   login.dispose();
-  //   email.dispose();
-  //   phone.dispose();
-  //   province.dispose();
-  //   city.dispose();
-  //   postal.dispose();
-  //   country.dispose();
-  //   faddress.dispose();
-  //   super.dispose();
-  // }
+      UserModel(
+          userid: widget.user.userid,
+          username: widget.user.username,
+          password: widget.user.password,
+          firstName: widget.user.firstName,
+          lastName: widget.user.lastName,
+          email: widget.user.email,
+          phone: widget.user.phone,
+          fullAddress: widget.user.fullAddress,
+          city: widget.user.city,
+          province: widget.user.province,
+          postalCode: widget.user.postalCode,
+          country: widget.user.country)
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Edit Profile"),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(top: 200.0, left: 8, right: 8),
+            padding: const EdgeInsets.all(2),
             child: Column(
               children: <Widget>[
                 Container(
@@ -152,14 +123,14 @@ class _EditProfileState extends State<EditProfile> {
                                         Expanded(
                                           child: Padding(
                                             padding: EdgeInsets.all(8.0),
-                                            child: 
-                                            TextFormField(
-                                              initialValue: widget.user.firstName,
+                                            child: TextFormField(
+                                              initialValue:
+                                                  widget.user.firstName,
                                               // controller: fname,
                                               decoration: const InputDecoration(
                                                 floatingLabelBehavior:
                                                     FloatingLabelBehavior.auto,
-                                                labelText: 'First Name',                                              
+                                                labelText: 'First Name',
                                                 hintStyle: TextStyle(
                                                     color: Colors.grey),
                                                 border: OutlineInputBorder(
@@ -176,7 +147,8 @@ class _EditProfileState extends State<EditProfile> {
                                             padding: EdgeInsets.all(8.0),
                                             child: TextFormField(
                                               // controller: lname,
-                                              initialValue: widget.user.lastName,
+                                              initialValue:
+                                                  widget.user.lastName,
                                               decoration: const InputDecoration(
                                                 floatingLabelBehavior:
                                                     FloatingLabelBehavior.auto,
@@ -202,7 +174,8 @@ class _EditProfileState extends State<EditProfile> {
                                           child: Padding(
                                             padding: EdgeInsets.all(8.0),
                                             child: TextFormField(
-                                              initialValue: widget.user.username,
+                                              initialValue:
+                                                  widget.user.username,
                                               // controller: login,
                                               decoration: const InputDecoration(
                                                 floatingLabelBehavior:
@@ -294,7 +267,7 @@ class _EditProfileState extends State<EditProfile> {
                                                   DropdownMenuEntry(
                                                       value: 'CA',
                                                       label: 'California'),
-                                                      DropdownMenuEntry(
+                                                  DropdownMenuEntry(
                                                       value: 'AZ',
                                                       label: 'Arizona ')
                                                 ],
@@ -324,7 +297,7 @@ class _EditProfileState extends State<EditProfile> {
                                                   DropdownMenuEntry(
                                                       value: 'PHX',
                                                       label: 'Phoenix'),
-                                                      DropdownMenuEntry(
+                                                  DropdownMenuEntry(
                                                       value: 'NY',
                                                       label: 'New York')
                                                 ],
@@ -352,7 +325,8 @@ class _EditProfileState extends State<EditProfile> {
                                           child: Padding(
                                             padding: EdgeInsets.all(8.0),
                                             child: TextFormField(
-                                              initialValue: widget.user.postalCode,
+                                              initialValue:
+                                                  widget.user.postalCode,
                                               decoration: const InputDecoration(
                                                 floatingLabelBehavior:
                                                     FloatingLabelBehavior.auto,
@@ -369,7 +343,7 @@ class _EditProfileState extends State<EditProfile> {
                                             ),
                                           ),
                                         ),
-                                       const Expanded(
+                                        const Expanded(
                                           child: Padding(
                                               padding: EdgeInsets.all(8.0),
                                               child: DropdownMenu(
@@ -379,13 +353,13 @@ class _EditProfileState extends State<EditProfile> {
                                                 initialSelection: 'US',
                                                 dropdownMenuEntries: [
                                                   DropdownMenuEntry(
-                                                      value: 'US',
-                                                      label: 'United States',
-                                                      ),
-                                                       DropdownMenuEntry(
-                                                      value: 'PH',
-                                                      label: 'Philippines',
-                                                      )
+                                                    value: 'US',
+                                                    label: 'United States',
+                                                  ),
+                                                  DropdownMenuEntry(
+                                                    value: 'PH',
+                                                    label: 'Philippines',
+                                                  )
                                                 ],
                                                 inputDecorationTheme:
                                                     InputDecorationTheme(
@@ -403,7 +377,7 @@ class _EditProfileState extends State<EditProfile> {
                                         )
                                       ],
                                     ),
-                                     Row(
+                                    Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
@@ -411,7 +385,8 @@ class _EditProfileState extends State<EditProfile> {
                                           child: Padding(
                                             padding: EdgeInsets.all(8.0),
                                             child: TextFormField(
-                                              initialValue: widget.user.fullAddress,
+                                              initialValue:
+                                                  widget.user.fullAddress,
                                               decoration: const InputDecoration(
                                                 floatingLabelBehavior:
                                                     FloatingLabelBehavior.auto,
@@ -442,7 +417,7 @@ class _EditProfileState extends State<EditProfile> {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
+      /* bottomNavigationBar: Padding(
         padding: MediaQuery.of(context).viewInsets,
         child: Container(
           padding: const EdgeInsets.all(8),
@@ -458,7 +433,26 @@ class _EditProfileState extends State<EditProfile> {
                   const Size(double.infinity, 50)),
             ),
             child: const Text(
-              'Save',
+              'Save Profile',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+      ), */
+      bottomNavigationBar: Expanded(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0), // Adjust the padding as needed
+          child: ElevatedButton(
+            onPressed: null,
+            style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(const Color(0xFF675DC2)),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              minimumSize: MaterialStateProperty.all<Size>(
+                  const Size(double.infinity, 50)),
+            ),
+            child: const Text(
+              'Save Profile',
               style: TextStyle(color: Colors.white),
             ),
           ),

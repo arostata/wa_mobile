@@ -45,7 +45,7 @@ class _NotificationPageState extends State<NotificationPage> {
                     ),
                     const SizedBox(height: 20),
                     const Text(
-                      "Turn on notification for Webassesor?",
+                      "Turn on notification for Webassessor?",
                       textAlign: TextAlign.center,
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 24),

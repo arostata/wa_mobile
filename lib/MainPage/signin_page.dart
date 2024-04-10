@@ -162,7 +162,7 @@ class _SigninPage extends State<SigninPage> {
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
-                SecondPage(user: user, assessmentsList: assessmentsList),
+                SecondPage(user: user, examList: assessmentsList),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               var begin = Offset(1.0, 0.0);
@@ -296,7 +296,7 @@ class _SigninPage extends State<SigninPage> {
                       Container(
                         alignment: Alignment.center,
                         child: const Text(
-                          "Welcome to Webassesor",
+                          "Welcome to Webassessor",
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
