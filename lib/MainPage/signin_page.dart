@@ -123,12 +123,13 @@ class _SigninPage extends State<SigninPage> {
           lastName: responseData['lastName'],
           email: responseData['email'],
           phone: responseData['phoneNumber'],
-          fullAddress: "responseData['fullAddress']",
-          city: "responseData['city']",
-          province: "responseData['province']",
-          postalCode: "responseData['postalCode']",
-          country: "responseData['country']",
+          fullAddress: responseData['mailingAddress']['address1'],
+          city: responseData['mailingAddress']['city'],
+          province: responseData['mailingAddress']['province'],
+          postalCode: responseData['mailingAddress']['postalCode'],
+          country: responseData['mailingAddress']['country'],
         );
+        print(responseData);
 
         // Navigate to next screen or perform any other action with user data
         // Navigate to the SecondPage

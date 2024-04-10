@@ -13,6 +13,58 @@ class _EditProfileState extends State<EditProfile> {
   bool profile = true;
   bool address = false;
   bool contact = false;
+
+  // final userId = widget.user.userid;
+  // final username = widget.user.username;
+  // final password = widget.user.password;
+  // final firstName = widget.user.firstName;
+  // final lastName = widget.user.lastName;
+  // final email = widget.user.email;
+  // final phone = widget.user.phone;
+  // final fullAddress = widget.user.fullAddress;
+  // final city = widget.user.city;
+  // final province = widget.user.province;
+  // final postalCode = widget.user.postalCode;
+  // final usercountryId = widget.user.country;
+
+  @override
+  void initState() {
+    List<UserModel> user = [
+      UserModel(userid: widget.user.userid, username: widget.user.username, password: widget.user.password, firstName: widget.user.firstName, lastName: widget.user.lastName, email: widget.user.email, phone: widget.user.phone, fullAddress: widget.user.fullAddress, city: widget.user.city, province: widget.user.province, postalCode: widget.user.postalCode, country: widget.user.country)
+  ];
+
+  
+
+}
+
+  // TextEditingController fname = TextEditingController();
+  // TextEditingController lname = TextEditingController();
+  // TextEditingController login = TextEditingController();
+  // TextEditingController email = TextEditingController();
+  // TextEditingController phone = TextEditingController();
+  // TextEditingController province = TextEditingController();
+  // TextEditingController city = TextEditingController();
+  // TextEditingController postal = TextEditingController();
+  // TextEditingController country = TextEditingController();
+  // TextEditingController faddress = TextEditingController();
+
+  // @override
+  // void dispose() {
+  //   // Clean up the controller when the widget is removed from the
+  //   // widget tree.
+  //   fname.dispose();
+  //   lname.dispose();
+  //   login.dispose();
+  //   email.dispose();
+  //   phone.dispose();
+  //   province.dispose();
+  //   city.dispose();
+  //   postal.dispose();
+  //   country.dispose();
+  //   faddress.dispose();
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +84,7 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                   ),
                   child: const CircleAvatar(
-                    radius: 50,
+                    radius: 100,
                     backgroundImage: AssetImage('lib/assets/avatar_person.png'),
                   ),
                 ),
@@ -91,7 +143,7 @@ class _EditProfileState extends State<EditProfile> {
                       Column(
                         children: <Widget>[
                           profile
-                              ? const Column(
+                              ? Column(
                                   children: [
                                     Row(
                                       mainAxisAlignment:
@@ -100,12 +152,14 @@ class _EditProfileState extends State<EditProfile> {
                                         Expanded(
                                           child: Padding(
                                             padding: EdgeInsets.all(8.0),
-                                            child: TextField(
-                                              decoration: InputDecoration(
+                                            child: 
+                                            TextFormField(
+                                              initialValue: widget.user.firstName,
+                                              // controller: fname,
+                                              decoration: const InputDecoration(
                                                 floatingLabelBehavior:
                                                     FloatingLabelBehavior.auto,
-                                                labelText: 'First Name',
-                                                hintText: 'John',
+                                                labelText: 'First Name',                                              
                                                 hintStyle: TextStyle(
                                                     color: Colors.grey),
                                                 border: OutlineInputBorder(
@@ -120,12 +174,13 @@ class _EditProfileState extends State<EditProfile> {
                                         Expanded(
                                           child: Padding(
                                             padding: EdgeInsets.all(8.0),
-                                            child: TextField(
-                                              decoration: InputDecoration(
+                                            child: TextFormField(
+                                              // controller: lname,
+                                              initialValue: widget.user.lastName,
+                                              decoration: const InputDecoration(
                                                 floatingLabelBehavior:
                                                     FloatingLabelBehavior.auto,
                                                 labelText: 'Last Name',
-                                                hintText: 'Doe',
                                                 hintStyle: TextStyle(
                                                     color: Colors.grey),
                                                 border: OutlineInputBorder(
@@ -146,12 +201,13 @@ class _EditProfileState extends State<EditProfile> {
                                         Expanded(
                                           child: Padding(
                                             padding: EdgeInsets.all(8.0),
-                                            child: TextField(
-                                              decoration: InputDecoration(
+                                            child: TextFormField(
+                                              initialValue: widget.user.username,
+                                              // controller: login,
+                                              decoration: const InputDecoration(
                                                 floatingLabelBehavior:
                                                     FloatingLabelBehavior.auto,
                                                 labelText: 'Login/Username',
-                                                hintText: 'jdUSer',
                                                 hintStyle: TextStyle(
                                                     color: Colors.grey),
                                                 border: OutlineInputBorder(
@@ -166,8 +222,10 @@ class _EditProfileState extends State<EditProfile> {
                                         Expanded(
                                           child: Padding(
                                             padding: EdgeInsets.all(8.0),
-                                            child: TextField(
-                                              decoration: InputDecoration(
+                                            child: TextFormField(
+                                              initialValue: widget.user.email,
+                                              // controller: email,
+                                              decoration: const InputDecoration(
                                                 floatingLabelBehavior:
                                                     FloatingLabelBehavior.auto,
                                                 labelText: 'Email',
@@ -192,8 +250,10 @@ class _EditProfileState extends State<EditProfile> {
                                         Expanded(
                                           child: Padding(
                                             padding: EdgeInsets.all(8.0),
-                                            child: TextField(
-                                              decoration: InputDecoration(
+                                            child: TextFormField(
+                                              initialValue: widget.user.phone,
+                                              // controller: phone,
+                                              decoration: const InputDecoration(
                                                 floatingLabelBehavior:
                                                     FloatingLabelBehavior.auto,
                                                 labelText: 'Phone/Telephone',
@@ -215,9 +275,9 @@ class _EditProfileState extends State<EditProfile> {
                                 )
                               : const SizedBox(),
                           address
-                              ? const Column(
+                              ? Column(
                                   children: [
-                                    Row(
+                                    const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
@@ -229,11 +289,14 @@ class _EditProfileState extends State<EditProfile> {
                                                 label:
                                                     Text('Province or State'),
                                                 enableFilter: true,
-                                                initialSelection: 'State',
+                                                initialSelection: 'AZ',
                                                 dropdownMenuEntries: [
                                                   DropdownMenuEntry(
-                                                      value: 'State',
-                                                      label: 'Province')
+                                                      value: 'CA',
+                                                      label: 'California'),
+                                                      DropdownMenuEntry(
+                                                      value: 'AZ',
+                                                      label: 'Arizona ')
                                                 ],
                                                 inputDecorationTheme:
                                                     InputDecorationTheme(
@@ -256,11 +319,14 @@ class _EditProfileState extends State<EditProfile> {
                                                 expandedInsets: EdgeInsets.zero,
                                                 label: Text('City'),
                                                 enableFilter: true,
-                                                initialSelection: 'City',
+                                                initialSelection: 'PHX',
                                                 dropdownMenuEntries: [
                                                   DropdownMenuEntry(
-                                                      value: 'State',
-                                                      label: 'City')
+                                                      value: 'PHX',
+                                                      label: 'Phoenix'),
+                                                      DropdownMenuEntry(
+                                                      value: 'NY',
+                                                      label: 'New York')
                                                 ],
                                                 inputDecorationTheme:
                                                     InputDecorationTheme(
@@ -285,12 +351,12 @@ class _EditProfileState extends State<EditProfile> {
                                         Expanded(
                                           child: Padding(
                                             padding: EdgeInsets.all(8.0),
-                                            child: TextField(
-                                              decoration: InputDecoration(
+                                            child: TextFormField(
+                                              initialValue: widget.user.postalCode,
+                                              decoration: const InputDecoration(
                                                 floatingLabelBehavior:
                                                     FloatingLabelBehavior.auto,
                                                 labelText: 'Postal',
-                                                hintText: 'Postal0000',
                                                 hintStyle: TextStyle(
                                                     color: Colors.grey),
                                                 border: OutlineInputBorder(
@@ -303,18 +369,23 @@ class _EditProfileState extends State<EditProfile> {
                                             ),
                                           ),
                                         ),
-                                        Expanded(
+                                       const Expanded(
                                           child: Padding(
                                               padding: EdgeInsets.all(8.0),
                                               child: DropdownMenu(
                                                 expandedInsets: EdgeInsets.zero,
                                                 label: Text('Country'),
                                                 enableFilter: true,
-                                                initialSelection: 'Country',
+                                                initialSelection: 'US',
                                                 dropdownMenuEntries: [
                                                   DropdownMenuEntry(
-                                                      value: 'State',
-                                                      label: 'Country')
+                                                      value: 'US',
+                                                      label: 'United States',
+                                                      ),
+                                                       DropdownMenuEntry(
+                                                      value: 'PH',
+                                                      label: 'Philippines',
+                                                      )
                                                 ],
                                                 inputDecorationTheme:
                                                     InputDecorationTheme(
@@ -332,19 +403,19 @@ class _EditProfileState extends State<EditProfile> {
                                         )
                                       ],
                                     ),
-                                    Row(
+                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Expanded(
                                           child: Padding(
                                             padding: EdgeInsets.all(8.0),
-                                            child: TextField(
-                                              decoration: InputDecoration(
+                                            child: TextFormField(
+                                              initialValue: widget.user.fullAddress,
+                                              decoration: const InputDecoration(
                                                 floatingLabelBehavior:
                                                     FloatingLabelBehavior.auto,
                                                 labelText: 'Address',
-                                                hintText: 'Arizona Phoenix',
                                                 hintStyle: TextStyle(
                                                     color: Colors.grey),
                                                 border: OutlineInputBorder(
