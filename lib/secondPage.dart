@@ -1,7 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:wa_mobile/Launcher/notification_page.dart';
+import 'package:wa_mobile/ReviewerPage/reviewer_page.dart';
+import 'package:wa_mobile/model/UserModel.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-class SecondPage extends StatelessWidget {
-  const SecondPage({Key? key});
+class SecondPage extends StatefulWidget {
+  const SecondPage({Key? key}) : super(key: key);
+
+  @override
+  _SecondPageState createState() => _SecondPageState();
+}
+
+class _SecondPageState extends State<SecondPage> {
+  @override
+  void initState() {
+    super.initState();
+    _checkNotificationPermission();
+  }
+
+  Future<void> _checkNotificationPermission() async {
+    await Future.delayed(const Duration(seconds: 2));
+    PermissionStatus status = await Permission.notification.status;
+    if (status.isDenied) {
+      /*Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const NotificationPage()),
+      );*/
+      Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const NotificationPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            var begin = Offset(1.0, 0.0);
+            var end = Offset.zero;
+            var curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +65,7 @@ class SecondPage extends StatelessWidget {
               ),
             ),
             Text(
-              'April 10, 2024 | 2:30 PM | PHST (UTC +8)',
+              'April 10, 2024 | 2:30 PM | PHST (UTC +8)',
               style: TextStyle(
                 fontSize: 12,
                 color: Color(0xFF616161),
@@ -59,9 +105,14 @@ class SecondPage extends StatelessWidget {
                   _buildExamCard(
                     title: 'The title or label of exam',
                     subtitle: 'Online Proctor',
-                    dateTime: 'April 10, 2024 | 2:30 PM | PHST (UTC +8)',
+                    dateTime: 'April 10, 2024 | 2:30 PM | PHST (UTC +8)',
                     onPressed: () {
                       // Handle button press
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ReviewerPage()),
+                      );
                     },
                     buttonText: 'Review Now',
                     isElevatedButton: true,

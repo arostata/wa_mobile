@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wa_mobile/MainPage/loginPage.dart';
+import 'package:wa_mobile/MainPage/signin_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
         context,
         MaterialPageRoute(
             builder: (context) =>
-                const LoginPageWidget()), // Replace SecondScreen with the screen you want to navigate to
+                const SigninPage()), // Replace SecondScreen with the screen you want to navigate to
       );
     });
   }
@@ -32,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image.asset(
-                'lib/assets/wa_logo_icon.png',
+                'lib/assets/logo_test_2.png',
                 width: 100,
               ),
             ),

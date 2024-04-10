@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class NotificationPage extends StatelessWidget {
-  const NotificationPage({super.key});
+class NotificationPage extends StatefulWidget {
+  const NotificationPage({Key? key}) : super(key: key);
 
+  @override
+  _NotificationPageState createState() => _NotificationPageState();
+}
+
+class _NotificationPageState extends State<NotificationPage> {
   Future<void> _requestPermissions() async {
     PermissionStatus status = await Permission.notification.request();
     if (status.isGranted) {
       // Notification permission granted
       // exit the app here.
+      Navigator.pop(context);
     } else if (status.isDenied) {
       // Notification permission denied
       // exit the app here.
@@ -75,7 +81,7 @@ class NotificationPage extends StatelessWidget {
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
-                    //close the app here...
+                    Navigator.pop(context);
                   },
                   style: ButtonStyle(
                     backgroundColor:
