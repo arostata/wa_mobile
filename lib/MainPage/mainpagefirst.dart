@@ -79,7 +79,7 @@ class MainPageFirstWidget extends StatelessWidget {
                     foregroundColor:
                         MaterialStateProperty.all<Color>(Colors.white),
                     minimumSize:
-                        MaterialStateProperty.all<Size>(const Size(200, 50)),
+                        MaterialStateProperty.all<Size>(const Size(230, 50)),
                   ),
                   child: const Text("Register for exam now"),
                 ),
