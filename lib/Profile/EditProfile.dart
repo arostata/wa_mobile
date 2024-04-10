@@ -54,9 +54,37 @@ class _EditProfileState extends State<EditProfile> {
                       width: 2,
                     ),
                   ),
-                  child: const CircleAvatar(
-                    radius: 100,
-                    backgroundImage: AssetImage('lib/assets/avatar_person.png'),
+                  child: Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 100,
+                        backgroundImage:
+                            AssetImage('lib/assets/avatar_person.png'),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          padding:
+                              EdgeInsets.all(6), // Adjust padding as needed
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.white, // Color of the stroke
+                              width: 1, // Width of the stroke
+                            ),
+                          ),
+                          child: IconButton(
+                              iconSize: 30,
+                              icon: Icon(
+                                Icons.camera_alt,
+                                color: const Color(0xFF675DC2),
+                              ),
+                              onPressed: () {}),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
