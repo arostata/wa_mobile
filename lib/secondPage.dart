@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:wa_mobile/Launcher/notification_page.dart';
 import 'package:wa_mobile/Profile/EditProfile.dart';
 import 'package:wa_mobile/ReviewerPage/reviewer_page.dart';
+import 'package:wa_mobile/model/AssessmentDetailsModel.dart';
 import 'package:wa_mobile/model/UserModel.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class SecondPage extends StatefulWidget {
   final UserModel user;
 
-  const SecondPage({Key? key, required this.user}) : super(key: key);
+  const SecondPage(
+      {Key? key,
+      required this.user,
+      required List<AssessmentDetailsModel> assessmentsList})
+      : super(key: key);
 
   @override
   _SecondPageState createState() => _SecondPageState();

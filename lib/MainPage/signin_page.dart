@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:wa_mobile/Launcher/notification_page.dart';
+import 'package:wa_mobile/model/AssessmentDetailsModel.dart';
 import 'package:wa_mobile/model/UserModel.dart';
 import 'package:wa_mobile/secondPage.dart';
 
@@ -107,12 +108,22 @@ class _SigninPage extends State<SigninPage> {
         ..badCertificateCallback =
             ((X509Certificate cert, String host, int port) => true);
 
+      final clientAssessment = HttpClient()
+        ..badCertificateCallback =
+            ((X509Certificate cert, String host, int port) => true);
+
       final url =
-          Uri.parse('https://10.80.222.157/wa/profile/getCandidateDetails/7');
+          Uri.parse('https://192.168.254.174/wa/profile/getCandidateDetails/7');
       final request = await client.getUrl(url);
       final response = await request.close();
 
-      if (response.statusCode == HttpStatus.ok) {
+      final urlAssessment = Uri.parse(
+          'https://192.168.254.174/wa/assessments/getRegistrationsByUser/7/SCHEDULED');
+      final requestAssessment = await clientAssessment.getUrl(urlAssessment);
+      final responseAssessment = await requestAssessment.close();
+
+      if (response.statusCode == HttpStatus.ok &&
+          responseAssessment.statusCode == HttpStatus.ok) {
         final responseBody = await response.transform(utf8.decoder).join();
         final responseData = json.decode(responseBody);
         final user = UserModel(
@@ -131,12 +142,27 @@ class _SigninPage extends State<SigninPage> {
         );
         print(responseData);
 
+        final responseAssessmentBody =
+            await responseAssessment.transform(utf8.decoder).join();
+
+        // Parse JSON data
+        List<Map<String, dynamic>> assessmentDataList =
+            json.decode(responseAssessmentBody).cast<Map<String, dynamic>>();
+
+        // Transfer JSON data to a list of Item objects
+        List<AssessmentDetailsModel> assessmentsList = [];
+        for (var jsonItem in assessmentDataList) {
+          AssessmentDetailsModel assessment =
+              AssessmentDetailsModel.fromJson(jsonItem);
+          assessmentsList.add(assessment);
+        }
+
         // Navigate to next screen or perform any other action with user data
         // Navigate to the SecondPage
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
-                SecondPage(user: user),
+                SecondPage(user: user, assessmentsList: assessmentsList),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               var begin = Offset(1.0, 0.0);
