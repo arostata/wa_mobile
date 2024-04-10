@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:wa_mobile/Launcher/notification_page.dart';
+import 'package:wa_mobile/Profile/EditProfile.dart';
 import 'package:wa_mobile/ReviewerPage/reviewer_page.dart';
 import 'package:wa_mobile/model/UserModel.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class SecondPage extends StatefulWidget {
-  const SecondPage({Key? key}) : super(key: key);
+  final UserModel user;
+
+  const SecondPage({Key? key, required this.user}) : super(key: key);
 
   @override
   _SecondPageState createState() => _SecondPageState();
@@ -78,6 +81,27 @@ class _SecondPageState extends State<SecondPage> {
             onPressed: () {
               // Navigate to profile page
               // Navigator.pushNamed(context, '/profile');
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      EditProfile(user: widget.user),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    var begin = Offset(1.0, 0.0);
+                    var end = Offset.zero;
+                    var curve = Curves.ease;
+
+                    var tween = Tween(begin: begin, end: end)
+                        .chain(CurveTween(curve: curve));
+
+                    return SlideTransition(
+                      position: animation.drive(tween),
+                      child: child,
+                    );
+                  },
+                ),
+              );
             },
             icon: Container(
               padding: const EdgeInsets.all(2),

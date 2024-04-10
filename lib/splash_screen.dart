@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wa_mobile/MainPage/loginPage.dart';
 import 'package:wa_mobile/MainPage/signin_page.dart';
 
 class SplashScreen extends StatefulWidget {

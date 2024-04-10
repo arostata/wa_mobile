@@ -1,4 +1,5 @@
 class UserModel {
+  final int userid;
   final String username;
   final String password;
   final String firstName;
@@ -12,6 +13,7 @@ class UserModel {
   final String country;
 
   UserModel({
+    required this.userid,
     required this.username,
     required this.password,
     required this.firstName,
