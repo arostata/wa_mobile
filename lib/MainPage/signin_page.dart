@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -26,7 +27,7 @@ class _SigninPage extends State<SigninPage> {
   @override
   void initState() {
     super.initState();
-    _checkNotificationPermission();
+    // _checkNotificationPermission();
   }
 
   Future<void> _checkNotificationPermission() async {
@@ -36,7 +37,7 @@ class _SigninPage extends State<SigninPage> {
         context,
         MaterialPageRoute(builder: (context) => const NotificationPage()),
       );*/
-      Navigator.push(
+      /*Navigator.push(
         context,
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
@@ -55,7 +56,7 @@ class _SigninPage extends State<SigninPage> {
             );
           },
         ),
-      );
+      );*/
     }
   }
 
@@ -63,7 +64,7 @@ class _SigninPage extends State<SigninPage> {
     final String username = _usernameController.text.trim();
     final String password = _passwordController.text.trim();
 
-    final url = Uri.parse('http://localhost/test');
+    final url = Uri.parse('https://local.webassessor.com/wa/profile/getCandidateDetails/7');
     final response = await http.post(
       url,
       body: {
@@ -75,6 +76,7 @@ class _SigninPage extends State<SigninPage> {
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
       final user = UserModel(
+        userid: responseData['userid'],
         username: responseData['username'],
         password: responseData['password'],
         firstName: responseData['firstName'],
@@ -100,57 +102,130 @@ class _SigninPage extends State<SigninPage> {
     final String username = _usernameController.text.trim();
     final String password = _passwordController.text.trim();
 
-    // Simulate an asynchronous operation (e.g., API call) with a delay
-    await Future.delayed(const Duration(seconds: 2));
-
     if (username == 'candidate' && password == 'candidate') {
-      final user = UserModel(
-        username: username,
-        password: password,
-        firstName: "Bruce",
-        lastName: "Wayne",
-        email: "bw@batman.com",
-        phone: "11222342344",
-        fullAddress: "Secret",
-        city: "Secret City",
-        province: "Secret Province",
-        postalCode: "Secret Postal",
-        country: "Secret Country",
-      );
+      final client = HttpClient()
+        ..badCertificateCallback =
+            ((X509Certificate cert, String host, int port) => true);
 
-      // Navigate to the SecondPage
-      /*Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          //builder: (context) => SecondPage(user: user),
-          builder: (context) => SecondPage(),
-        ),
-      );*/
-      Navigator.of(context).pushReplacement(
-        PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => SecondPage(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            var begin = Offset(1.0, 0.0);
-            var end = Offset.zero;
-            var curve = Curves.ease;
+      final url =
+          Uri.parse('https://10.80.222.157/wa/profile/getCandidateDetails/7');
+      final request = await client.getUrl(url);
+      final response = await request.close();
 
-            var tween =
-                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      if (response.statusCode == HttpStatus.ok) {
+        final responseBody = await response.transform(utf8.decoder).join();
+        final responseData = json.decode(responseBody);
+        final user = UserModel(
+          userid: responseData['id'],
+          username: username,
+          password: password,
+          firstName: responseData['firstName'],
+          lastName: responseData['lastName'],
+          email: responseData['email'],
+          phone: responseData['phoneNumber'],
+          fullAddress: "responseData['fullAddress']",
+          city: "responseData['city']",
+          province: "responseData['province']",
+          postalCode: "responseData['postalCode']",
+          country: "responseData['country']",
+        );
 
-            return SlideTransition(
-              position: animation.drive(tween),
-              child: child,
-            );
-          },
-        ),
-      );
+        // Navigate to next screen or perform any other action with user data
+        // Navigate to the SecondPage
+        Navigator.of(context).pushReplacement(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                SecondPage(user: user),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              var begin = Offset(1.0, 0.0);
+              var end = Offset.zero;
+              var curve = Curves.ease;
 
-      // Navigate to next screen or perform any other action with user data
+              var tween =
+                  Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+              return SlideTransition(
+                position: animation.drive(tween),
+                child: child,
+              );
+            },
+          ),
+        );
+      } else {
+        setState(() {
+          _errorMessage = "Something's not right";
+        });
+      }
     } else {
       setState(() {
         _errorMessage = 'Invalid username or password';
       });
     }
   }
+
+  /*Future<void> _signIn(BuildContext context) async {
+    final String username = _usernameController.text.trim();
+    final String password = _passwordController.text.trim();
+
+    if (username == 'candidate' && password == 'candidate') {
+      final url =
+          Uri.parse('http://10.80.222.157/wa/profile/getCandidateDetails/7');
+      final response = await http.get(url);
+
+      print("test coddeeeeeee");
+      print(json.decode(response.body));
+
+      if (response.statusCode == 200) {
+        final responseData = json.decode(response.body);
+        final user = UserModel(
+          userid: responseData['id'],
+          username: username,
+          password: password,
+          firstName: responseData['firstName'],
+          lastName: responseData['lastName'],
+          email: responseData['email'],
+          phone: responseData['phoneNumber'],
+          fullAddress: "responseData['fullAddress']",
+          city: "responseData['city']",
+          province: "responseData['province']",
+          postalCode: "responseData['postalCode']",
+          country: "responseData['country']",
+        );
+
+        // Navigate to next screen or perform any other action with user data
+        // Navigate to the SecondPage
+        Navigator.of(context).pushReplacement(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                SecondPage(user: user),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              var begin = Offset(1.0, 0.0);
+              var end = Offset.zero;
+              var curve = Curves.ease;
+
+              var tween =
+                  Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+              return SlideTransition(
+                position: animation.drive(tween),
+                child: child,
+              );
+            },
+          ),
+        );
+      } else {
+        setState(() {
+          _errorMessage = "Something's not right";
+        });
+      }
+    } else {
+      setState(() {
+        _errorMessage = 'Invalid username or password';
+      });
+    }
+  }*/
 
   @override
   Widget build(BuildContext context) {
