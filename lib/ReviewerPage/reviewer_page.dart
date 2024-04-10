@@ -2,7 +2,10 @@ import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 
 class ReviewerPage extends StatefulWidget {
-  const ReviewerPage({super.key});
+  final String examTitle;
+  final String examType;
+  const ReviewerPage(
+      {super.key, required this.examTitle, required this.examType});
 
   @override
   _ReviewerPage createState() => _ReviewerPage();
@@ -35,20 +38,20 @@ class _ReviewerPage extends State<ReviewerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'The title or label of exam',
-              style: TextStyle(
+              widget.examTitle,
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              'Online Proctor',
-              style: TextStyle(
+              widget.examType,
+              style: const TextStyle(
                 fontSize: 12,
                 color: Color(0xFF616161),
               ),

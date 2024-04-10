@@ -189,7 +189,9 @@ class _SecondPageState extends State<SecondPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const ReviewerPage()),
+                                  builder: (context) => ReviewerPage(
+                                      examTitle: widget.examList[0].examTitle,
+                                      examType: widget.examList[0].examType)),
                             );
                           },
                           buttonText: 'Review Now',
