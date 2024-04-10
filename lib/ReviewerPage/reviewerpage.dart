@@ -10,6 +10,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 class ReviewPageWidget extends StatefulWidget {
   const ReviewPageWidget({super.key});
@@ -26,12 +27,12 @@ class _ReviewPageWidgetState extends State<ReviewPageWidget> {
   @override
   void initState() {
     super.initState();
-    //_model = createModel(context, () => ReviewPageModel());
+    // _model = createModel(context, () => ReviewPageModel());
   }
 
   @override
   void dispose() {
-    //  _model.dispose();
+    //_model.dispose();
 
     super.dispose();
   }
@@ -44,97 +45,83 @@ class _ReviewPageWidgetState extends State<ReviewPageWidget> {
       //     : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        body: SafeArea(
-          top: true,
-          child: Stack(
-            children: [
-              Stack(
-                children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                                child: Text(
-                                  'The title or label of exam',
-                                  style: FlutterFlowTheme.of(context)
-                                      .displaySmall
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        fontSize: 16,
-                                        letterSpacing: 0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(24, 4, 0, 0),
-                                child: Text(
-                                  'Online Proctor',
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                              ),
-                              Divider(
-                                height: 32,
-                                thickness: 1,
-                                color: FlutterFlowTheme.of(context).alternate,
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional(0, 0),
-                                child: PDFView(
-                                  filePath: 'lib/assets/review-example.pdf',
-                                  enableSwipe: true,
-                                  swipeHorizontal: true,
-                                  autoSpacing: false,
-                                  pageFling: false,
-                                  onRender: (_pages) {
-                                    // setState(() {
-                                    //   pages = _pages;
-                                    //   isReady = true;
-                                    // });
-                                  },
-                                  onError: (error) {
-                                    print(error.toString());
-                                  },
-                                  onPageError: (page, error) {
-                                    print('$page: ${error.toString()}');
-                                  },
-                                  // onViewCreated:
-                                  //     (PDFViewController pdfViewController) {
-                                  //   _controller.complete(pdfViewController);
-                                  // },
-                                  // onPageChanged: (int page, int total) {
-                                  //   print('page change: $page/$total');
-                                  // },
-                                ),
-                              ),
-                            ],
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
+          title: Align(
+            alignment: AlignmentDirectional(-1, 1),
+            child: Text(
+              'Page Title',
+              style: FlutterFlowTheme.of(context).displaySmall.override(
+                    fontFamily: 'Outfit',
+                    color: Color(0xFF0F1113),
+                    fontSize: 26,
+                    letterSpacing: 0,
+                    fontWeight: FontWeight.w500,
+                  ),
+            ),
+          ),
+          actions: [],
+          centerTitle: false,
+          elevation: 0,
+        ),
+        body: Stack(
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment: AlignmentDirectional(-1, 0),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                            child: Text(
+                              'Online Proctor',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Plus Jakarta Sans',
+                                    color: Color(0xFF57636C),
+                                    fontSize: 14,
+                                    letterSpacing: 0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                        Divider(
+                          height: 32,
+                          thickness: 2,
+                          color: FlutterFlowTheme.of(context).alternate,
+                        ),
+                      ],
+                    ),
                   ),
-                ],
+                ),
+              ],
+            ),
+            const Align(
+              alignment: AlignmentDirectional(0, -0.23),
+              child: SizedBox(
+                height: 650,
+                child: PDFView(
+                  filePath: 'lib/assets/review-example.pdf',
+                  enableSwipe: true,
+                  swipeHorizontal: true,
+                  autoSpacing: false,
+                  pageFling: false,
+                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
